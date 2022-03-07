@@ -17,7 +17,7 @@ Laden Sie unsere neueste Version herunter, und schon kann es losgehen!
 
 | Windows | macOS | GNU/Linux (AppImage) | GNU/Linux (Deb) |
 | -- | -- | -- | -- |
-| [Download](https://github.com/de-johannes/jitsi-meet-electron/releases/download/windows/hallo-install.exe) | [Download](https://github.com/de-johannes/jitsi-meet-electron/releases/download/mac/hallo-install.dmg) | [Download](https://github.com/de-johannes/jitsi-meet-electron/releases/download/linux/hallo-install-x86_64.AppImage) | [Download](https://github.com/de-johannes/jitsi-meet-electron/releases/download/linux/hallo-install-amd64.deb) |
+| [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install.exe) | [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install.dmg) | [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install-x86_64.AppImage) | [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install-amd64.deb) |
 
 HINWEIS: Die GNU/LInux-Builds sind nur für 64-Bit Systeme geeignet.
 
