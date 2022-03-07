@@ -44,5 +44,5 @@ export default {
     /**
      * The URL of Terms and Conditions Page.
      */
-    termsAndConditionsURL: 'https://info.hallo.johanneswerk.de/bin/view/Nutzungsbedingungen/',
+    termsAndConditionsURL: 'https://info.hallo.johanneswerk.de/bin/view/Nutzungsbedingungen/'
 };
