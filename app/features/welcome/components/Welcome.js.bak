@@ -119,6 +119,7 @@ class Welcome extends Component<Props, State> {
     componentDidMount() {
         this.props.dispatch(startOnboarding('welcome-page'));
 
+        this._updateRoomname();
     }
 
     /**
