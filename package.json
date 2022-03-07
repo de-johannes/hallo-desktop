@@ -1,6 +1,6 @@
 {
   "name": "hallo",
-  "version": "2022.2.2",
+  "version": "2022.2.3",
   "description": "App für HALLO - vom Ev. Johanneswerk",
   "main": "./build/main.js",
   "productName": "HALLO",

@@ -1,5 +1,5 @@
 {
-	"enterConferenceNameOrUrl": "Bitte einen Konferenznamen oder eine Jitsi-Adresse eingeben",
+	"enterConferenceNameOrUrl": "Bitte Meeting-ID eingeben",
 	"go": "LOS",
 	"help": "Hilfe",
 	"termsLink": "Nutzungsbedingungen",
@@ -12,12 +12,12 @@
 	"onboarding": {
 		"startTour": "Tour starten",
 		"skip": "Überspringen",
-		"welcome": "Willkommen in {{appName}}",
+		"welcome": "Willkommen bei {{appName}}",
 		"letUsShowYouAround": "Wir zeigen wie alles funktioniert!",
 		"next": "Weiter",
-		"conferenceUrl": "Bitte den Namen (oder die vollständige Adresse) des Raumes eingeben, dem beigetreten werden soll. Es kann ein Name ausgedacht werden, diesen bitte anderen mitteilen, damit sie denselben Namen eingeben.",
+		"conferenceUrl": "Bitte den Namen (oder die vollständige Adresse) des Meetings eingeben, dem beigetreten werden soll. Es kann ein Name ausgedacht werden, diesen bitte anderen mitteilen, damit sie denselben Namen eingeben.",
 		"settingsDrawerButton": "Hier klicken, um zu den Einstellungen zu gelangen.",
-		"serverSetting": "Das ist der Server, auf dem die Konferenzen stattfinden werden. Es kann ein eigener verwendet werden, muss aber nicht!",
+		"serverSetting": "Das ist der Server, auf dem die Konferenzen stattfinden werden.",
 		"serverTimeout": "Zeitüberschreitung für den Beitritt zu einer Konferenz. Wenn nicht rechtzeitig beigetreten wurde, wird die Konferenz abgebrochen.",
 		"alwaysOnTop": "Hier kann eingestellt werden, ob das Fenster »Immer im Vordergrund« aktiviert wird. Dieses wird angezeigt, wenn das Hauptfenster den Fokus verliert. Das wird bei allen Konferenzen angewendet."
 	},
