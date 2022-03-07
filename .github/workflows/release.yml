@@ -52,7 +52,7 @@ jobs:
           tag_name: ${{ env.PACKAGE_VERSION }}
           generate_release_notes: true
           fail_on_unmatched_files: false
-          prerelease: true
+          prerelease: false
           files: |
             dist/latest.yml
             dist/latest-linux.yml
