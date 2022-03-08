@@ -6,6 +6,7 @@ Desktop Anwendungen für HALLO vom Ev. Johanneswerk - basierend auf [Jitsi Meet]
 
 ## Features
 
+- Automatische Updates
 - Unterstützung von [End-to-End Encryption](https://jitsi.org/blog/e2ee/) (BETA)
 - [HALLO](https://hallo.johanneswerk.de) ist als Server vorkonfiguriert
 - Always-On-Top Fenster
