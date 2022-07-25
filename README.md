@@ -47,7 +47,29 @@ Wenn Sie die Datei nach dem Herunterladen nicht direkt ausführen können, versu
 
 <details><summary>Hinweis für alte GNU/Linux-Distributionen</summary>
 
+<<<<<<< HEAD
 Sie könnten den folgenden Fehler erhalten:
+=======
+```
+dlopen(): error loading libfuse.so.2
+```
+
+To fix this, install libfuse2 as follows:
+
+```
+sudo apt install libfuse2
+```
+
+In case you experience a blank page after jitsi server upgrades, try removing the local cache files:
+
+```
+rm -rf ~/.config/Jitsi\ Meet/
+```
+
+<details><summary>NOTE for old GNU/Linux distributions</summary>
+
+You might get the following error:
+>>>>>>> 54374e8843bfcf40668fb1c0e3c455d7e2a8825b
 
 ```
 FATAL:nss_util.cc(632)] NSS_VersionCheck("3.26") failed. NSS >= 3.26 is required.
