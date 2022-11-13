@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    branches:
+     - hallo
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-2022
+          - macos-latest
+        node:
+          - 16
+
+    runs-on: ${{matrix.os}}
+    name: ${{matrix.os}}
+    
+    env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: nyaa8/package-version@v1.0.3
+      - uses: actions/setup-node@v3 
+      - run: npm ci
+      - if: matrix.os == 'macos-latest' 
+        run: | 
+          npm run lint
+      - run: npm run dist
+      - uses: actions/upload-artifact@v3.1.0
+        with:
+          name: hallo-release
+          path: |
+            dist/latest.yml
+            dist/latest-linux.yml
+            dist/latest-mac.yml
+            dist/hallo-install-amd64.deb
+            dist/hallo-install-amd64.AppImage
+            dist/hallo-install.exe
+            dist/hallo-install.exe.blockmap
+            dist/hallo-install.dmg
+            dist/hallo-install.dmg.blockmap
+            dist/hallo-install.zip
+            dist/hallo-install.zip.blockmap
+      - uses: "softprops/action-gh-release@v0.1.14"
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          tag_name: 'v${{ env.PACKAGE_VERSION }}'
+          generate_release_notes: true
+          fail_on_unmatched_files: false
+          prerelease: false
+          files: |
+            dist/latest.yml
+            dist/latest-linux.yml
+            dist/latest-mac.yml
+            dist/hallo-install-amd64.deb
+            dist/hallo-install-amd64.AppImage
+            dist/hallo-install.exe
+            dist/hallo-install.exe.blockmap
+            dist/hallo-install.dmg
+            dist/hallo-install.dmg.blockmap
+            dist/hallo-install.zip
+            dist/hallo-install.zip.blockmap
