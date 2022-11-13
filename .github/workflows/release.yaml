@@ -4,6 +4,7 @@ on:
   push:
     branches:
      - hallo
+     - master
 
 jobs:
   build:
@@ -49,7 +50,7 @@ jobs:
       - uses: "softprops/action-gh-release@v0.1.14"
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
-          tag_name: 'v${{ env.PACKAGE_VERSION }}'
+          tag_name: '${{ env.PACKAGE_VERSION }}'
           generate_release_notes: true
           fail_on_unmatched_files: false
           prerelease: false
