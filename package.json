@@ -28,7 +28,7 @@
       "!main.js"
     ],
     "mac": {
-      "artifactName": "hallo-desktop.${ext}",
+      "artifactName": "hallo-install.${ext}",
       "target": [
         {
           "arch": "universal",
@@ -57,7 +57,7 @@
       "hardenedRuntime": false
     },
     "linux": {
-      "artifactName": "hallo-desktop-${arch}.${ext}",
+      "artifactName": "hallo-install-${arch}.${ext}",
       "category": "VideoConference;AudioVideo;Audio;Video;Network",
       "description": "Jitsi Meet Desktop App",
       "desktop": {
@@ -72,7 +72,7 @@
         "Comment[zh-CN]": "Jitsi Meet 桌面应用",
         "Comment[zh-TW]": "Jitsi Meet 桌面應用程式"
       },
-      "executableName": "hallo-desktop",
+      "executableName": "hallo-install",
       "target": [
         {
           "arch": "x64",
@@ -95,7 +95,7 @@
       ]
     },
     "win": {
-      "artifactName": "hallo-desktop.${ext}",
+      "artifactName": "hallo-install.${ext}",
       "target": [
         {
           "arch": [
