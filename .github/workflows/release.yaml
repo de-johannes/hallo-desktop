@@ -38,14 +38,14 @@ jobs:
             dist/latest.yml
             dist/latest-linux.yml
             dist/latest-mac.yml
-            dist/hallo-desktop-amd64.deb
-            dist/hallo-desktop-amd64.AppImage
-            dist/hallo-desktop.exe
-            dist/hallo-desktop.exe.blockmap
-            dist/hallo-desktop.dmg
-            dist/hallo-desktop.dmg.blockmap
-            dist/hallo-desktop.zip
-            dist/hallo-desktop.zip.blockmap
+            dist/hallo-install-amd64.deb
+            dist/hallo-install-amd64.AppImage
+            dist/hallo-install.exe
+            dist/hallo-install.exe.blockmap
+            dist/hallo-install.dmg
+            dist/hallo-install.dmg.blockmap
+            dist/hallo-install.zip
+            dist/hallo-install.zip.blockmap
       - uses: "softprops/action-gh-release@v0.1.14"
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
@@ -57,11 +57,11 @@ jobs:
             dist/latest.yml
             dist/latest-linux.yml
             dist/latest-mac.yml
-            dist/hallo-desktop-amd64.deb
-            dist/hallo-desktop-amd64.AppImage
-            dist/hallo-desktop.exe
-            dist/hallo-desktop.exe.blockmap
-            dist/hallo-desktop.dmg
-            dist/hallo-desktop.dmg.blockmap
-            dist/hallo-desktop.zip
-            dist/hallo-desktop.zip.blockmap
+            dist/hallo-install-amd64.deb
+            dist/hallo-install-amd64.AppImage
+            dist/hallo-install.exe
+            dist/hallo-install.exe.blockmap
+            dist/hallo-install.dmg
+            dist/hallo-install.dmg.blockmap
+            dist/hallo-install.zip
+            dist/hallo-install.zip.blockmap

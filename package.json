@@ -1,6 +1,5 @@
-{
   "name": "hallo",
-  "version": "2022.10.1",
+  "version": "2022.11.1",
   "description": "App für HALLO - vom Ev. Johanneswerk",
   "main": "./build/main.js",
   "productName": "HALLO Desktop",
@@ -29,7 +28,7 @@
       "!main.js"
     ],
     "mac": {
-      "artifactName": "hallo-desktop.${ext}",
+      "artifactName": "hallo-install.${ext}",
       "target": [
         {
           "arch": "universal",
@@ -58,16 +57,22 @@
       "hardenedRuntime": false
     },
     "linux": {
-      "artifactName": "hallo-desktop-${arch}.${ext}",
+      "artifactName": "hallo-install-${arch}.${ext}",
       "category": "VideoConference;AudioVideo;Audio;Video;Network",
       "description": "Jitsi Meet Desktop App",
       "desktop": {
-        "Comment[hu]": "Asztali Jitsi Meet-alkalmazás",
+        "Comment[de]": "Jitsi Meet Desktop App",
+        "Comment[es]": "Aplicación de escritorio Jitsi Meet",
+        "Comment[fr]": "Application de bureau Jitsi Meet",
         "Comment[hr]": "Jitsi Meet desktop aplikacija",
-        "Comment[zh-CN]": "Jitsi Meet 桌面应用程序",
+        "Comment[hu]": "Asztali Jitsi Meet-alkalmazás",
+        "Comment[it]": "Applicazione Jitsi Meet Desktop",
+        "Comment[pt]": "Aplicativo Jitsi Meet",
+        "Comment[ru]": "Приложение Jitsi Meet",
+        "Comment[zh-CN]": "Jitsi Meet 桌面应用",
         "Comment[zh-TW]": "Jitsi Meet 桌面應用程式"
       },
-      "executableName": "hallo-desktop",
+      "executableName": "hallo-install",
       "target": [
         {
           "arch": "x64",
@@ -90,7 +95,7 @@
       ]
     },
     "win": {
-      "artifactName": "hallo-desktop.${ext}",
+      "artifactName": "hallo-install.${ext}",
       "target": [
         {
           "arch": [
@@ -162,7 +167,7 @@
     "babel-loader": "^8.2.3",
     "concurrently": "5.1.0",
     "css-loader": "^6.7.1",
-    "electron": "21.1.1",
+    "electron": "21.3.0",
     "electron-builder": "23.1.0",
     "electron-context-menu": "^2.5.0",
     "electron-is-dev": "^1.2.0",
