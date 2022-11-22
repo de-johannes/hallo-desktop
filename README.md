@@ -16,9 +16,9 @@ Desktop Anwendungen für HALLO vom Ev. Johanneswerk - basierend auf [Jitsi Meet]
 
 Laden Sie unsere neueste Version herunter, und schon kann es losgehen!
 
-| Windows | macOS | GNU/Linux (AppImage) | GNU/Linux (Deb) |
-|---------|-------|----------------------|-----------------|
-| [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install.exe) | [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install.dmg) | [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install-x86_64.AppImage) | [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install-amd64.deb) |
+| Windows | macOS | GNU/Linux (Deb) |
+|---------|-------|-----------------|
+| [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install.exe) | [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install.dmg) | [Download](https://github.com/de-johannes/hallo-desktop/releases/latest/download/hallo-install-amd64.deb) |
 
 HINWEIS: Die GNU/LInux-Builds sind nur für 64-Bit Systeme geeignet.
 
