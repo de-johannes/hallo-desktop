@@ -48,11 +48,6 @@ Wenn Sie die Datei nach dem Herunterladen nicht direkt ausführen können, versu
 
 Sie könnten den folgenden Fehler erhalten:
 
-```
-FATAL:nss_util.cc(632)] NSS_VersionCheck("3.26") failed. NSS >= 3.26 is required.
-Please upgrade to the latest NSS, and if you still get this error, contact your
-distribution maintainer.
-```
 
 Wenn Sie dies tun, installieren Sie bitte NSS (Beispiel für Debian / Ubuntu):
 
