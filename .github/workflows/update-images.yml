@@ -17,6 +17,7 @@ jobs:
           git checkout origin/hallo -- app/images/onboarding.png
           git checkout origin/hallo -- resources/icon.icns
           git checkout origin/hallo -- resources/icon.png
+          git checkout origin/hallo -- README.MD
 
       - name: Commit and push changes
         run: |
