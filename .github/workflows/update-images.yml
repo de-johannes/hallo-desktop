@@ -1,0 +1,25 @@
+name: Replace Images
+
+on: workflow_dispatch
+
+jobs:
+  replace-images:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Check out images from 'hallo' branch
+        run: |
+          git checkout hallo -- app/images/logo.svg
+          git checkout hallo -- app/images/onboarding.png
+          git checkout hallo -- resources/icon.icns
+          git checkout hallo -- resources/icon.png
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Replace images from 'hallo' branch" -a
+          git push
