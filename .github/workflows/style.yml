@@ -1,0 +1,33 @@
+name: Automatisches Aktualisieren von Wrapper.js
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Update Wrapper.js
+      run: |
+        echo "// @flow" > app/features/welcome/styled/Wrapper.js
+        echo "" >> app/features/welcome/styled/Wrapper.js
+        echo "import styled from 'styled-components';" >> app/features/welcome/styled/Wrapper.js
+        echo "" >> app/features/welcome/styled/Wrapper.js
+        echo "export default styled.div\`" >> app/features/welcome/styled/Wrapper.js
+        echo "    background: linear-gradient(145deg, rgba(255,255,255,1) 0%, rgba(68,68,68,1) 100%);" >> app/features/welcome/styled/Wrapper.js
+        echo "    display: flex;" >> app/features/welcome/styled/Wrapper.js
+        echo "    flex-direction: column;" >> app/features/welcome/styled/Wrapper.js
+        echo "    height: 100vh;" >> app/features/welcome/styled/Wrapper.js
+        echo "\`;" >> app/features/welcome/styled/Wrapper.js
+      
+    - name: Commit and push if it changed 
+      run: | 
+        git diff
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        git commit -am "Automatische Aktualisierung von Wrapper.js" || exit 0 
+        git push
