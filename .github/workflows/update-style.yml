@@ -1,4 +1,4 @@
-name: Automatisches Aktualisieren von Wrapper.js
+name: Update Style
 
 on:
   workflow_dispatch:
