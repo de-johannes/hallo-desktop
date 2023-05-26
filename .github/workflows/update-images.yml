@@ -13,10 +13,10 @@ jobs:
       - name: Checkout static files from 'hallo' branch
         run: |
           git fetch origin hallo
-          git checkout hallo -- app/images/logo.svg
-          git checkout hallo -- app/images/onboarding.png
-          git checkout hallo -- resources/icon.icns
-          git checkout hallo -- resources/icon.png
+          git checkout origin/hallo -- app/images/logo.svg
+          git checkout origin/hallo -- app/images/onboarding.png
+          git checkout origin/hallo -- resources/icon.icns
+          git checkout origin/hallo -- resources/icon.png
 
       - name: Commit and push changes
         run: |
