@@ -1,0 +1,152 @@
+name: Combined Workflow
+
+on: workflow_dispatch
+
+jobs:
+  update-style:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Update Wrapper.js
+      run: |
+        echo "// @flow" > app/features/welcome/styled/Wrapper.js
+        echo "" >> app/features/welcome/styled/Wrapper.js
+        echo "import styled from 'styled-components';" >> app/features/welcome/styled/Wrapper.js
+        echo "" >> app/features/welcome/styled/Wrapper.js
+        echo "export default styled.div\`" >> app/features/welcome/styled/Wrapper.js
+        echo "    background: linear-gradient(145deg, rgba(255,255,255,1) 0%, rgba(68,68,68,1) 100%);" >> app/features/welcome/styled/Wrapper.js
+        echo "    display: flex;" >> app/features/welcome/styled/Wrapper.js
+        echo "    flex-direction: column;" >> app/features/welcome/styled/Wrapper.js
+        echo "    height: 100vh;" >> app/features/welcome/styled/Wrapper.js
+        echo "\`;" >> app/features/welcome/styled/Wrapper.js
+      
+    - name: Commit and push if it changed 
+      run: | 
+        git diff
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        git commit -am "Automatische Aktualisierung von Wrapper.js" || exit 0 
+        git push
+
+  update-static-files:
+    needs: update-style
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout 'master' branch
+        uses: actions/checkout@v3
+
+      - name: Checkout static files from 'hallo' branch
+        run: |
+          git fetch origin hallo
+          git checkout origin/hallo -- app/images/logo.svg
+          git checkout origin/hallo -- app/images/onboarding.png
+          git checkout origin/hallo -- resources/icon.icns
+          git checkout origin/hallo -- resources/icon.png
+          git checkout origin/hallo -- README.md
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Replace static files from 'hallo' branch"
+          git push
+
+  update-package:
+    needs: update-static-files
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install jq
+      run: sudo apt-get install jq
+
+    - name: Update package.json
+      run: |
+        jq '.name="hallo" |
+            .productName="HALLO Desktop" |
+            .description="App für HALLO - vom Ev. Johanneswerk" |
+            .build.productName="HALLO Desktop" |
+            .build.mac.artifactName="hallo-install.\(.ext)" |
+            .build.mac.extendInfo.NSCameraUsageDescription="HALLO braucht für Videokonferenzen Zugriff auf die Kamera." |
+            .build.mac.extendInfo.NSMicrophoneUsageDescription="HALLO braucht für Videokonferenzen Zugriff auf das Mikrofon." |
+            .build.linux.artifactName="hallo-install-\(.arch).\(.ext)" |
+            .build.linux.executableName="hallo-install" |
+            .build.win.artifactName="hallo-install.\(.ext)" |
+            .build.protocols[0].schemes[0]="hallo" |
+            .repository.url="git://github.com/de-johannes/hallo-desktop"
+            ' package.json > temp.json && mv temp.json package.json
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -am "Update package.json" || echo "No changes to commit"
+        git push
+
+  build-and-release:
+    needs: update-package
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-2022
+          - macos-latest
+        node:
+          - 16
+
+    runs-on: ${{matrix.os}}
+    name: ${{matrix.os}}
+    
+    env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nyaa8/package-version@v1.0.3
+      - uses: actions/setup-node@v3 
+      - run: npm ci
+      - if: matrix.os == 'macos-latest' 
+        run: | 
+          npm run lint
+      - run: npm run dist
+      - uses: actions/upload-artifact@v3.1.0
+        with:
+          name: hallo-release
+          path: |
+            dist/latest.yml
+            dist/latest-linux.yml
+            dist/latest-mac.yml
+            dist/hallo-install-amd64.deb
+            dist/hallo-install-amd64.AppImage
+            dist/hallo-install.exe
+            dist/hallo-install.exe.blockmap
+            dist/hallo-install.dmg
+            dist/hallo-install.dmg.blockmap
+            dist/hallo-install.zip
+            dist/hallo-install.zip.blockmap
+      - uses: "softprops/action-gh-release@v0.1.14"
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          tag_name: 'v${{ env.PACKAGE_VERSION }}'
+          generate_release_notes: true
+          fail_on_unmatched_files: false
+          prerelease: false
+          files: |
+            dist/latest.yml
+            dist/latest-linux.yml
+            dist/latest-mac.yml
+            dist/hallo-install-amd64.deb
+            dist/hallo-install-amd64.AppImage
+            dist/hallo-install.exe
+            dist/hallo-install.exe.blockmap
+            dist/hallo-install.dmg
+            dist/hallo-install.dmg.blockmap
+            dist/hallo-install.zip
+            dist/hallo-install.zip.blockmap
