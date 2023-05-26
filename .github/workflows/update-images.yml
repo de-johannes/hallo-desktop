@@ -30,5 +30,10 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Replace images from 'hallo' branch" -a
+          git add app/images/logo.svg
+          git add app/images/onboarding.png
+          git add resources/icon.icns
+          git add resources/icon.png
+          git commit -m "Replace images from 'hallo' branch"
           git push
+
