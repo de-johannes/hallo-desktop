@@ -30,7 +30,12 @@ Vor der Installation wird eine Warnung angezeigt, die besagt, dass die App nicht
 
 ### macOS
 
-Unter macOS Catalina wird bei der Erstinstallation eine Warnung angezeigt. Die App lässt sich erst öffnen, wenn "Öffnen" gedrückt wird. Dieser Dialog wird nur einmal angezeigt.
+Unter macOS Catalina (und neuer) muss für die Installation muss wie folgt verfahren werden:
+
+- Laden Sie HALLO.
+- Verschieben Sie HALLO in Ihre Liste mit Programmen.
+- Halten Sie die "Option"-Taste fest, machen Sie einen Rechtsklick auf die Datei und klicken Sie "Öffnen".
+- Bestätigen Sie, dass Sie die Datei öffnen wollen.
 
 ### GNU/Linux
 
