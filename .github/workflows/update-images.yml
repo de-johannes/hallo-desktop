@@ -1,4 +1,4 @@
-name: Update Images
+name: Replace Images
 
 on: workflow_dispatch
 
@@ -7,33 +7,21 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # fetch all history so we can access any branch
+      - name: Checkout 'master' branch
+        uses: actions/checkout@v3
 
-      - name: Check out 'hallo' branch
-        run: git checkout hallo
-
-      - name: Check out images
+      - name: Checkout static files from 'hallo' branch
         run: |
-          git checkout -f hallo -- app/images/logo.svg
-          git checkout -f hallo -- app/images/onboarding.png
-          git checkout -f hallo -- resources/icon.icns
-          git checkout -f hallo -- resources/icon.png
-          ls -l app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png
-
-      - name: Switch back to 'master' branch
-        run: git checkout -
+          git fetch origin hallo
+          git checkout hallo -- app/images/logo.svg
+          git checkout hallo -- app/images/onboarding.png
+          git checkout hallo -- resources/icon.icns
+          git checkout hallo -- resources/icon.png
 
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add app/images/logo.svg
-          git add app/images/onboarding.png
-          git add resources/icon.icns
-          git add resources/icon.png
-          git commit -m "Replace images from 'hallo' branch"
+          git add .
+          git commit -m "Replace static files from 'hallo' branch"
           git push
-
