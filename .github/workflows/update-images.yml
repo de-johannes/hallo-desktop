@@ -17,12 +17,12 @@ jobs:
 
       - name: Check out images
         run: |
-          git checkout hallo -- app/images/logo.svg
-          git checkout hallo -- app/images/onboarding.png
-          git checkout hallo -- resources/icon.icns
-          git checkout hallo -- resources/icon.png
+          git checkout -f hallo -- app/images/logo.svg
+          git checkout -f hallo -- app/images/onboarding.png
+          git checkout -f hallo -- resources/icon.icns
+          git checkout -f hallo -- resources/icon.png
 
-      - name: Switch back to 'main' branch
+      - name: Switch back to 'master' branch
         run: git checkout -
 
       - name: Commit and push changes
