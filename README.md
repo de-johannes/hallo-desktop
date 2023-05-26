@@ -22,14 +22,6 @@ Laden Sie unsere neueste Version herunter, und schon kann es losgehen!
 
 HINWEIS: Die GNU/LInux-Builds sind nur für 64-Bit Systeme geeignet.
 
-### Homebrew
-
-*macOS*\-Benutzer können  die Anwendung mit dem folgenden Befehl installieren:
-
-```
-brew install --cask hallo
-```
-
 ## Bekannte Probleme
 
 ### Windows
