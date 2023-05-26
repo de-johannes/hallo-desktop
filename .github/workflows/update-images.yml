@@ -1,4 +1,4 @@
-name: Replace Images
+name: Update Images
 
 on: workflow_dispatch
 
@@ -9,13 +9,21 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # fetch all history so we can access any branch
 
-      - name: Check out images from 'hallo' branch
+      - name: Check out 'hallo' branch
+        run: git checkout hallo
+
+      - name: Check out images
         run: |
           git checkout hallo -- app/images/logo.svg
           git checkout hallo -- app/images/onboarding.png
           git checkout hallo -- resources/icon.icns
           git checkout hallo -- resources/icon.png
+
+      - name: Switch back to 'main' branch
+        run: git checkout -
 
       - name: Commit and push changes
         run: |
