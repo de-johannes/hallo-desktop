@@ -39,34 +39,46 @@ jobs:
       - name: Checkout 'master' branch
         uses: actions/checkout@v3
 
-      - name: Store size of logo.svg in master branch
+      - name: Store sizes of files in master branch
         run: |
-          echo "SIZE_MASTER=$(du -b app/images/logo.svg | cut -f1)" >> $GITHUB_ENV
-      
+          for file in app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
+          do
+            echo "SIZE_MASTER_${file//\//_}=$(du -b $file | cut -f1)" >> $GITHUB_ENV
+          done
+
       - name: Checkout 'hallo' branch
         uses: actions/checkout@v3
         with:
           ref: hallo
 
-      - name: Store size of logo.svg in hallo branch
+      - name: Store sizes of files in hallo branch
         run: |
-          echo "SIZE_HALLO=$(du -b app/images/logo.svg | cut -f1)" >> $GITHUB_ENV
-      
+          for file in app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
+          do
+            echo "SIZE_HALLO_${file//\//_}=$(du -b $file | cut -f1)" >> $GITHUB_ENV
+          done
+
       - name: Checkout 'master' branch
         uses: actions/checkout@v3
 
       - name: Replace files if they differ
         run: |
-          if [ "$SIZE_MASTER" != "$SIZE_HALLO" ]; then
-            git fetch origin hallo
-            git checkout origin/hallo -- app/images/logo.svg
-            git checkout origin/hallo -- app/images/onboarding.png
-            git checkout origin/hallo -- resources/icon.icns
-            git checkout origin/hallo -- resources/icon.png
-            git checkout origin/hallo -- README.md
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add .
+          git fetch origin hallo
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          should_commit=false
+
+          for file in app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
+          do
+            if [ "${{ env.SIZE_MASTER_${file//\//_} }}" != "${{ env.SIZE_HALLO_${file//\//_} }}" ]; then
+              git checkout origin/hallo -- $file
+              git add $file
+              should_commit=true
+            fi
+          done
+
+          if [ "$should_commit" = true ]; then
             git commit -m "Replace static files from 'hallo' branch"
             git push
           else
