@@ -39,22 +39,39 @@ jobs:
       - name: Checkout 'master' branch
         uses: actions/checkout@v3
 
-      - name: Checkout static files from 'hallo' branch
+      - name: Store size of logo.svg in master branch
         run: |
-          git fetch origin hallo
-          git checkout origin/hallo -- app/images/logo.svg
-          git checkout origin/hallo -- app/images/onboarding.png
-          git checkout origin/hallo -- resources/icon.icns
-          git checkout origin/hallo -- resources/icon.png
-          git checkout origin/hallo -- README.md
+          echo "SIZE_MASTER=$(du -b app/images/logo.svg | cut -f1)" >> $GITHUB_ENV
+      
+      - name: Checkout 'hallo' branch
+        uses: actions/checkout@v3
+        with:
+          ref: hallo
 
-      - name: Commit and push changes
+      - name: Store size of logo.svg in hallo branch
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Replace static files from 'hallo' branch"
-          git push
+          echo "SIZE_HALLO=$(du -b app/images/logo.svg | cut -f1)" >> $GITHUB_ENV
+      
+      - name: Checkout 'master' branch
+        uses: actions/checkout@v3
+
+      - name: Replace files if they differ
+        run: |
+          if [ "$SIZE_MASTER" != "$SIZE_HALLO" ]; then
+            git fetch origin hallo
+            git checkout origin/hallo -- app/images/logo.svg
+            git checkout origin/hallo -- app/images/onboarding.png
+            git checkout origin/hallo -- resources/icon.icns
+            git checkout origin/hallo -- resources/icon.png
+            git checkout origin/hallo -- README.md
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add .
+            git commit -m "Replace static files from 'hallo' branch"
+            git push
+          else
+            echo "Files in master and hallo branches are the same. No need to replace."
+          fi
 
   update-package:
     needs: update-static-files
