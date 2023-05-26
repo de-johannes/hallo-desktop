@@ -1,4 +1,4 @@
-name: Replace Images
+name: Update Static Files
 
 on: workflow_dispatch
 
