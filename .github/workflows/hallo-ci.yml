@@ -46,6 +46,12 @@ jobs:
             echo "${file//\//_}=$(du -b $file | cut -f1)" >> master_sizes.txt
           done
 
+      - name: Upload master sizes
+        uses: actions/upload-artifact@v2
+        with:
+          name: master-sizes
+          path: master_sizes.txt
+
       - name: Checkout 'hallo' branch
         uses: actions/checkout@v3
         with:
@@ -58,8 +64,26 @@ jobs:
             echo "${file//\//_}=$(du -b $file | cut -f1)" >> hallo_sizes.txt
           done
 
+      - name: Upload hallo sizes
+        uses: actions/upload-artifact@v2
+        with:
+          name: hallo-sizes
+          path: hallo_sizes.txt
+
       - name: Checkout 'master' branch
         uses: actions/checkout@v3
+
+      - name: Download sizes
+        uses: actions/download-artifact@v2
+        with:
+          name: master-sizes
+          path: .
+
+      - name: Download sizes
+        uses: actions/download-artifact@v2
+        with:
+          name: hallo-sizes
+          path: .
 
       - name: Replace files if they differ
         run: |
