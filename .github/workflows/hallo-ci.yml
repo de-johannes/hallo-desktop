@@ -41,7 +41,7 @@ jobs:
 
       - name: Store sizes of files in master branch
         run: |
-          for file in app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
+          for file app/features/config/index.js in app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
           do
             echo "${file//\//_}=$(du -b $file | cut -f1)" >> master_sizes.txt
           done
@@ -59,7 +59,7 @@ jobs:
 
       - name: Store sizes of files in hallo branch
         run: |
-          for file in app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
+          for file in app/features/config/index.js app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
           do
             echo "${file//\//_}=$(du -b $file | cut -f1)" >> hallo_sizes.txt
           done
@@ -93,7 +93,7 @@ jobs:
           
           should_commit=false
 
-          for file in app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
+          for file in app/features/config/index.js app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
           do
             master_size=$(grep ${file//\//_} master_sizes.txt | cut -d'=' -f2)
             hallo_size=$(grep ${file//\//_} hallo_sizes.txt | cut -d'=' -f2)
