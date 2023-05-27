@@ -41,7 +41,7 @@ jobs:
 
       - name: Store sizes of files in master branch
         run: |
-          for file app/features/config/index.js in app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
+          for file in app/features/config/index.js app/features/welcome/components/Welcome.js app/images/logo.svg app/images/onboarding.png resources/icon.icns resources/icon.png README.md
           do
             echo "${file//\//_}=$(du -b $file | cut -f1)" >> master_sizes.txt
           done
