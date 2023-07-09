@@ -1,0 +1,50 @@
+name: HALLO Test Build
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-and-test:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-2022
+          - macos-latest
+        node:
+          - 16
+
+    runs-on: ${{matrix.os}}
+    name: ${{matrix.os}}
+    
+    env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nyaa8/package-version@v1.0.3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - if: matrix.os == 'macos-latest' 
+        run: | 
+          npm run lint
+      - run: npm run dist
+      - uses: actions/upload-artifact@v3.1.0
+        with:
+          name: hallo-test-release
+          path: |
+            dist/latest.yml
+            dist/latest-linux.yml
+            dist/latest-mac.yml
+            dist/hallo-install-amd64.deb
+            dist/hallo-install-amd64.AppImage
+            dist/hallo-install.exe
+            dist/hallo-install.exe.blockmap
+            dist/hallo-install.dmg
+            dist/hallo-install.dmg.blockmap
+            dist/hallo-install.zip
+            dist/hallo-install.zip.blockmap
