@@ -1,6 +1,6 @@
 {
   "name": "hallo",
-  "version": "2023.7.0",
+  "version": "2023.7.1",
   "description": "App für HALLO - vom Ev. Johanneswerk",
   "main": "./build/main.js",
   "productName": "HALLO Desktop",
@@ -15,7 +15,7 @@
     "watch": "webpack --config ./webpack.renderer.js --mode development --watch --watch-options-poll=1000"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   },
   "build": {
     "appId": "org.jitsi.jitsi-meet",
