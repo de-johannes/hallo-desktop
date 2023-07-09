@@ -1,4 +1,4 @@
-name: HALLO CI
+name: HALLO Release
 
 on: workflow_dispatch
 
