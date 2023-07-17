@@ -1,6 +1,6 @@
 {
   "name": "hallo",
-  "version": "2023.7.1",
+  "version": "2023.7.2",
   "description": "App für HALLO - vom Ev. Johanneswerk",
   "main": "./build/main.js",
   "productName": "HALLO Desktop",
@@ -174,7 +174,7 @@
     "babel-loader": "^8.2.3",
     "concurrently": "8.2.0",
     "css-loader": "^6.8.1",
-    "electron": "25.2.0",
+    "electron": "25.3.0",
     "electron-builder": "23.6.0",
     "electron-context-menu": "^2.5.0",
     "electron-is-dev": "^1.2.0",
