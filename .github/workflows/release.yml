@@ -147,8 +147,10 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git commit -am "Update package.json" || echo "No changes to commit"
-        git push
+        git add .
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update package.json"
+        git pull --rebase origin master
+        git push origin master || echo "Nothing to push"
 
   build-and-release:
     needs: update-package
