@@ -178,7 +178,7 @@
     "electron-builder": "23.6.0",
     "electron-context-menu": "^2.5.0",
     "electron-is-dev": "^1.2.0",
-    "electron-log": "^4.3.2",
+    "electron-log": "^4.4.8",
     "electron-notarize": "1.1.1",
     "electron-react-devtools": "0.5.3",
     "electron-updater": "5.0.5",
